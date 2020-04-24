@@ -2,6 +2,11 @@
 runtime: php73
 
 # Defaults to "serve index.php" 
-entrypoint: serve helloworld.php
+entrypoint: serve index.php
 
 # If your main page is index.php, comment the above entrypoint setting 
+
+
+# Use        gcloud app deploy        to deploy to GCP
+
+# https://cs4750db-268423.appspot.com/

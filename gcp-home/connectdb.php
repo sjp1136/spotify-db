@@ -1,15 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="your name">
+  <meta name="description" content="include some description about your page">      
+  <title>Title</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+<h1>Test DB Connection</h1>
+
+
 <?php
 
 /******************************/
 // connecting to GCP cloud SQL instance
 
-// $username = 'root';
-// $password = 'your-root-password';
+$username = 'projuser';
+$password = 'asdfasdf';
 
-// $dbname = 'your-database-name';
+$dbname = 'spotify4u';
 
 // if PHP is on GCP standard App Engine, use instance name to connect
-// $host = 'instance-connection-name';
+$host = 'cs4750db-268423:us-east4:db-demo';
 
 // if PHP is hosted somewhere else (non-GCP), use public IP address to connect
 // $host = "public-IP-address-to-cloud-instance";
@@ -58,3 +75,8 @@ catch (Exception $e)       // handle any type of exception
 }
 
 ?>
+
+    
+</div>    
+</body>
+</html>
