@@ -45,7 +45,7 @@
             <input type="button" value="Register2" onclick="window.open.href='register.php'" />
             <input type="button" value="Register3" onClick="window.open.href='register.php'" />
 
-            
+            <!--  -->
             <!-- <button type="submit"><a href="./register.php">Register2</a></button> -->
       </form>
     </div>
