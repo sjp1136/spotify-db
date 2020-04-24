@@ -1,6 +1,7 @@
 <?php
   require('connectdb.php');
   require('sql.php');
+  include('register.php');
   // steps:
 ?>
 
@@ -26,8 +27,8 @@
             <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="psw" required>
 
-              <input type="button" onClick="window.location='/register.php'" value="Log In">​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
-              <input type="button" value="Log In1" onClick="window.location.href='page2.php'" />
+              <input type="button" onclick="window.location='simpleform.php'" value="Log In">​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+              <input type="button" value="Log In1" onclick="window.location.href='simpleform.php'" />
               <button type="submit"><a href="simpleform.php">Log In2</a></button>
         </div>
         <!-- 
@@ -39,9 +40,13 @@
     <div class="container">
       <form action="/register.php">
             <label for="uname"><b>Not registered??</b></label>
-            <input type="button" onClick="window.location='./register.php'" value="Register">​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
-            <input type="button" value="Register1" onClick="window.location.href='./register.php'" />
-            <button type="submit"><a href="./register.php">Register2</a></button>
+            <!-- <input type="button" onclick="window.location='./register.php'" value="Register">​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​ -->
+            <input type="button" value="Register1" onClick="window.open('register.php') " />
+            <input type="button" value="Register2" onclick="window.open.href='register.php'" />
+            <input type="button" value="Register3" onClick="window.open.href='register.php'" />
+
+            
+            <!-- <button type="submit"><a href="./register.php">Register2</a></button> -->
       </form>
     </div>
 </div>
