@@ -34,8 +34,11 @@ $dbname = 'your-computingID';
 
 
 /******************************/
+// $dsn = "driver:host=the-host-name;dbname=your-database-name"
 
-$dsn = "mysql:host=$host;dbname=$dbname";
+// $dsn = "mysql:host=$host;dbname=$dbname";
+$dsn = "driver:host=$host;dbname=$dbname";
+
 $db = "";
 
 /** connect to the database **/
