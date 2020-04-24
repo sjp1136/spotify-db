@@ -27,17 +27,12 @@
 /******************************/
 // connecting to DB on CS server
 
-$username = 'your-computingID';
-$password = 'your-CS-phpMyAdmin-password';
-$host = 'cs4750.cs.virginia.edu';
-$dbname = 'your-computingID';
+$username = 'projuser';
+$password = 'asdfasdf';
+$host = 'cs4750db-268423:us-east4:db-demo';
+$dbname = 'spotify4u';
 
-
-/******************************/
-// $dsn = "driver:host=the-host-name;dbname=your-database-name"
-
-// $dsn = "mysql:host=$host;dbname=$dbname";
-$dsn = "driver:host=$host;dbname=$dbname";
+$dsn="mysql:host=$host;dbname=$dbname";
 
 $db = "";
 
@@ -45,6 +40,7 @@ $db = "";
 try 
 {
    $db = new PDO($dsn, $username, $password);   
+   echo "<p>You are connected to the database</p>";
    echo "<p>You are connected to the database</p>";
 }
 catch (PDOException $e)     // handle a PDO exception (errors thrown by the PDO library)
