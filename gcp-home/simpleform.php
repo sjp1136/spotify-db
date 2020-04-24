@@ -1,17 +1,6 @@
 <?php
-  // The difference between include and require arises when the file being included cannot be found: 
-  // include will emit a warning ( E_WARNING ) and the script will continue, 
-  // whereas require will emit a fatal error ( E_COMPILE_ERROR ) and halt the script
-
-  //include('connectdb.php');
   require('connectdb.php');
   require('sql.php')
-  // steps:
-  // 1. connect (configure: load driver, specify host, specify username/password)
-  // 2. preparing query (prepared statement allows you to have a fill in the blank to be sent to the server)
-  // 3. bind value, execute 
-  // 4. use result 
-  // 5. close connection   
 ?>
 
 <?php
