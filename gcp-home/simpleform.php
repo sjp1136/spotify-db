@@ -5,7 +5,7 @@
 
   //include('connectdb.php');
   require('connectdb.php');
-  require('frienddb.php')
+  require('sql.php')
   // steps:
   // 1. connect (configure: load driver, specify host, specify username/password)
   // 2. preparing query (prepared statement allows you to have a fill in the blank to be sent to the server)
