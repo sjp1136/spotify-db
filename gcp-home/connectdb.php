@@ -54,7 +54,7 @@ $host = 'cs4750db-268423:us-east4:db-demo';
 // $dsn = "driver:host=the-host-name;dbname=your-database-name"
 
 // $dsn = "mysql:host=$host;dbname=$dbname";
-$dsn = "driver:host=$host;dbname=$dbname";
+$dsn = "mysql:unix_socket=/cloudsql/$host;dbname=$dbname";
 
 $db = "";
 
