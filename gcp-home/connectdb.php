@@ -49,8 +49,8 @@ $password = 'asdfasdf';
 $host = 'cs4750db-268423:us-east4:db-demo';
 $dbname = 'spotify4u';
 
-$dsn="mysql:host=$host;dbname=$dbname";
-
+// $dsn = "mysql:host=$host;dbname=$dbname";
+$dsn = "mysql:unix_socket=/cloudsql/$host;dbname=$dbname";
 $db = "";
 
 /** connect to the database **/
