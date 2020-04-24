@@ -17,7 +17,7 @@ $host = 'cs4750db-268423:us-east4:db-demo';
 
 /******************************/
 // connecting to DB on XAMPP (local)
-
+//
 // $username = 'your-username';
 // $password = 'your-password';
 // $host = 'localhost:3306';
