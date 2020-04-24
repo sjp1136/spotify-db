@@ -1,7 +1,6 @@
 <?php
   require('connectdb.php');
   require('sql.php');
-  include('register.php');
   // steps:
 ?>
 
@@ -37,6 +36,7 @@
             <span class="psw">Forgot <a href="#">password?</a></span>
         </div> -->
     </form>
+
     <div class="container">
       <form action="/register.php">
             <label for="uname"><b>Not registered??</b></label>
@@ -44,8 +44,10 @@
             <input type="button" value="Register1" onClick="window.open('register.php') " />
             <input type="button" value="Register2" onclick="window.open.href='register.php'" />
             <input type="button" value="Register3" onClick="window.open.href='register.php'" />
+            <a href="./register.php">REGISTER1</a>
+            <a href="/register.php">REGISTER2</a>
+            <a href="register.php">REGISTER3</a>
 
-            <!--  -->
             <!-- <button type="submit"><a href="./register.php">Register2</a></button> -->
       </form>
     </div>
