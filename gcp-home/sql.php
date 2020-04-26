@@ -18,38 +18,6 @@ function getPlaylists($userID, $sortVal){
     return $results;    
 }
 
-function addUser($userName, $password){
-    global $db;
-    $hash = password_hash($password, PASSWORD_DEFAULT);
-    $query = "insert into credentials values($userName, $hash)";
-    $statement = $db->prepare($query);
-    $statement->execute();
-
-    $results = $statement->fetchAll();
-
-    $statement-closeCursor();
-
-    //logic for verifying if results = successful user add
-
-    return True; //this means successful user add
-}
-
-function verifyUser($userName, $password){
-    global $db;
-    $query = "select username,password from credentials where username = $userName";
-    $statement = $db->prepare($query);
-    $statement->execute();
-
-    $results = $statement->fetchAll();
-
-    $statement-closeCursor();
-
-
-    //logic for password_verify($password, $hashFromMYSQLResult)
-
-    return $results;
-}
-
 function getStats($userID){
     global $db;
     $query = "select * from stats where userID = $userID";
