@@ -3,6 +3,11 @@
   require('connectdb.php');
   require('sql.php');
 
+  session_start();
+
+  if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+    header('Location: index.php');
+  } 
 
   if(isset($_POST["username"])){
 
@@ -29,6 +34,8 @@
       // echo '</pre>';
 
       if(password_verify($password, $result[0]['password'])){
+        $_SESSION['loggedin'] = true;
+        $_SESSION['username'] = $uname; 
         header('Location: index.php');
         exit;
       }

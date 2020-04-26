@@ -14,6 +14,17 @@
 <div class="container">
 <h1>Spotify4U</h1>
 <?php
+
+session_start();
+
+// Login stuff
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+  echo "Welcome to Spotify4U, " . $_SESSION['username'] . "!";
+} else {
+  echo "Please log in first to see this page.";
+}
+
+
 echo "Hello World" ;
 require("connectdb.php");
 require("sql.php");
@@ -25,6 +36,7 @@ print_r($results);
 
 ?>
 
+<a href='logout.php'>Click here to log out</a>
     
 </div>    
 </body>
