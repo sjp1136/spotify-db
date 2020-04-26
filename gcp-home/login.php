@@ -6,6 +6,9 @@
   session_start();
 
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+    echo '<pre>'; 
+    print_r($_SESSION['username']);
+    echo '</pre>';
     header('Location: index.php');
   } 
 
@@ -27,12 +30,6 @@
 
     if(!empty($result)){
 
-      // echo '<pre>'; 
-      // print_r($result[0]['password']);
-      // $hello = password_verify($password, $result[0]['password']);
-      // print_r($hello);
-      // echo '</pre>';
-
       if(password_verify($password, $result[0]['password'])){
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $uname; 
@@ -40,12 +37,12 @@
         exit;
       }
       else{
-        echo "<h1>Login Fail!</h1>";
-      }
+        echo "<div class='alert alert-danger' role='alert'>
+        Login Fail!</div>" ;      }
     }
     else{
-      echo "<h1>Login Fail!</h1>";
-    }
+      echo "<div class='alert alert-danger' role='alert'>
+      Login Fail!</div>" ;      }
 
   }
 ?>
@@ -59,29 +56,66 @@
   <meta name="description" content="include some description about your page">      
   <title>Our Login Page</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="/stylesheets/index.css" />
+
 </head>
 
 <body>
-<div class="container">
+<!-- Navbar/Register -->  
+<nav class="navbar fixed-top navbar-dark bg-dark">
+  <a class="navbar-brand">Welcome to Spotify4u</a>
+  <form class="form-inline">
+    <a class="btn btn-outline-success my-2 my-sm-0" href="register.php">CLICK TO REGISTER</a>
+  </form>
+</nav>
 
-    <form action="" method="post">
-        <div class="form-group">
-            <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="username" required>
-
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
-
-            <button type="submit" name = 'submit' value="LOGIN">Submit</button>
-        </div>
-    </form>
-
-    <div class="container">
-        <label for="uname"><b>Not registered??</b></label>
-            
-        <a href="register.php">REGISTER</a>
+<!-- Navbar/Register -->  
+<form action="/" method="post">
+    <div class="form-group movedown">
+      <label for="uname">Username</label>
+      <input class="form-control" type="text" placeholder="Enter Username" name="username" required>
     </div>
-</div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input class="form-control" type="password" placeholder="Enter Password" name="password" required>
+    </div>
+    <button type="submit" name = 'submit' value="LOGIN" class="btn btn-primary">Submit</button>
+</form>   
+
+<!-- <div class="container">
+  <label for="uname"><b>Not registered??</b></label>   
+  <a href="register.php">REGISTER</a>
+</div> -->
+
+
+<!-- Carousel -->
+<!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleInd" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://i.imgur.com/YsbWg4F.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.imgur.com/RvvcYYM.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://i.imgur.com/GRZnXvd.jpg" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="/#" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="/#2" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div> -->
+
 </body>
 
 </html>

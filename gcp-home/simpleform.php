@@ -35,7 +35,6 @@ if(!empty($_POST['db-btn'])){
 
 <body>
 <div class="container">
-
   <form action="simpleform.php" method="post">
     <div class="form-group">
       Your Name
@@ -53,8 +52,7 @@ if(!empty($_POST['db-btn'])){
     <br/>
     <?php echo $msg;  ?>
   </form> 
-  <a href="/">Logout</a>
-  
+  <!-- <a href="/">Logout</a> -->
 </div>
 </body>
 

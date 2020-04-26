@@ -10,3 +10,8 @@ entrypoint: serve routing.php
 # Use        gcloud app deploy        to deploy to GCP
 
 # https://cs4750db-268423.appspot.com/
+
+
+handlers:
+- url: /stylesheets
+  static_dir: stylesheets
