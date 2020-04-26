@@ -1,7 +1,6 @@
 <?php
   require('connectdb.php');
   require('sql.php');
-  // steps:
 ?>
 
 <!DOCTYPE html>
@@ -26,27 +25,15 @@
             <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="psw" required>
 
-              <input type="button" onclick="window.location='simpleform.php'" value="Log In">​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
-              <input type="button" value="Log In1" onclick="window.location.href='simpleform.php'" />
-              <button type="submit"><a href="simpleform.php">Log In2</a></button>
+            <button type="submit"><a href="simpleform.php">Log In</a></button>
         </div>
-        <!-- 
-        <div class="container" style="background-color:#f1f1f1">
-            <button type="button" class="cancelbtn">Cancel</button>
-            <span class="psw">Forgot <a href="#">password?</a></span>
-        </div> -->
     </form>
 
     <div class="container">
       <form action="/register.php">
             <label for="uname"><b>Not registered??</b></label>
-            <!-- <input type="button" onclick="window.location='./register.php'" value="Register">​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​ -->
-            <input type="button" value="Register1" onClick="window.open('register.php') " />
-            <input type="button" value="Register2" onclick="window.open.href='register.php'" />
-            <input type="button" value="Register3" onClick="window.open.href='register.php'" />
-            <a href="./register.php">REGISTER1</a>
-            <a href="/register.php">REGISTER2</a>
-            <a href="register.php">REGISTER3</a>
+            
+            <a href="register.php">REGISTER</a>
 
             <!-- <button type="submit"><a href="./register.php">Register2</a></button> -->
       </form>

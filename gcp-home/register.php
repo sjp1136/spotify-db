@@ -5,3 +5,5 @@
     </div>
     <button type="submit">Register</button>
 </form>
+
+<a href="/">Go to Login</a>

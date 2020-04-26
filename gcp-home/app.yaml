@@ -2,7 +2,7 @@
 runtime: php73
 
 # Defaults to "serve index.php" 
-entrypoint: serve login.php
+entrypoint: serve routing.php
 
 # If your main page is index.php, comment the above entrypoint setting 
 
