@@ -16,7 +16,7 @@
 
 <!-- Navbar -->
 <nav class="navbar fixed-top navbar-dark bg-dark">
-  <a class="navbar-brand">Welcome to Spotify4u</a>
+  <a class="navbar-brand">Spotify4u - Main Menu</a>
   <form class="form-inline">
     <a class="btn btn-outline-success my-2 my-sm-0" href="logout.php">LOGOUT</a>
   </form>
@@ -37,7 +37,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 }
 
 
-echo "Hello World" ;
+// echo "Hello World" ;
 require("connectdb.php");
 require("sql.php");
 

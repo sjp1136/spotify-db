@@ -37,6 +37,7 @@
         exit;
       }
       else{
+        $_SESSION['loggedin'] = false;
         echo "<div class='alert alert-danger' role='alert'>
         Login Fail!</div>" ;      }
     }
