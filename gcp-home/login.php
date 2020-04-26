@@ -6,9 +6,9 @@
   session_start();
 
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    // echo '<pre>'; 
-    // print_r($_SESSION['username']);
-    // echo '</pre>';
+    echo '<pre>'; 
+    print_r($_SESSION['username']);
+    echo '</pre>';
     header('Location: index.php');
   } 
 
@@ -34,7 +34,7 @@
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $uname; 
         header('Location: index.php');
-        // exit;
+        exit;
       }
       else{
         echo "<div class='alert alert-danger' role='alert'>

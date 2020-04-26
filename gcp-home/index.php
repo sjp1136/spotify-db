@@ -30,7 +30,7 @@ session_start();
 
 // Login stuff
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-  echo '<pre><h1>'; 
+  echo '<pre><h1 class="movedown">'; 
   print_r($_SESSION['username']);
   echo '</h1></pre>';
   // echo "<h1>Welcome to Spotify4U, " . $_SESSION['username'] . "!</h1>";
