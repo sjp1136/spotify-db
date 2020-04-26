@@ -50,8 +50,10 @@ if(!empty($_POST['db-btn'])){
 
     <br/>
     <?php echo $msg;  ?>
-  </form>   
+  </form> 
+  <a href="/">Go back to Login</a>
+  
+</div>
 </body>
 
-</div>    
 </html>
