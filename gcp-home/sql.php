@@ -20,7 +20,7 @@ function getPlaylists($userID, $sortVal){
 
 function addUser($userName, $password){
     global $db;
-    $hash = password_hash($password, PASSWORD_DEFAULT)
+    $hash = password_hash($password, PASSWORD_DEFAULT);
     $query = "insert into credentials values($userName, $hash)";
     $statement = $db->prepare($query);
     $statement->execute();

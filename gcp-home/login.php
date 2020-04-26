@@ -29,7 +29,7 @@
       // echo '</pre>';
 
       if(password_verify($password, $result[0]['password'])){
-        header('Location: simpleform.php');
+        header('Location: index.php');
         exit;
       }
       else{
