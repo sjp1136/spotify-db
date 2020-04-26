@@ -43,31 +43,34 @@
   <link type="text/css" rel="stylesheet" href="/stylesheets/index.css" />
 </head>
 
-<form action="register.php" method="post">
-    <!-- Navbar/Register -->  
-    <nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand">Welcome to Spotify4u</a>
     <form class="form-inline">
         <a class="btn btn-outline-success my-2 my-sm-0" href="/">LOGIN</a>
     </form>
-    </nav>
-    <h1>Register!</h1>
-    <div class="form-group">
-        <label for="uname">Username</label>
-        <input class="form-control" type="text" placeholder="Enter Username" name="username2" required>
-    </div>
-    <div class="form-group">
-        <label for="psd">Password</label>
-        <input class="form-control" type="password" placeholder="Enter Password" name="password2" required>
-    </div>
-    <!-- <div class="container">
-        <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username2" required>
+</nav>
 
-        <label for="psd"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password2" required>
+<form action="register.php" method="post">
+    <!-- Navbar/Register -->  
+    <div class="">
+        <h1>Register!</h1>
+        <div class="form-group">
+            <label for="uname">Username</label>
+            <input class="form-control" type="text" placeholder="Enter Username" name="username2" required>
+        </div>
+        <div class="form-group">
+            <label for="psd">Password</label>
+            <input class="form-control" type="password" placeholder="Enter Password" name="password2" required>
+        </div>
+        <!-- <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username2" required>
 
-    </div> -->
-    <button type="submit" name = 'submit' value="Register" class="btn btn-primary">Submit</button>
+            <label for="psd"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password2" required>
+
+        </div> -->
+        <button type="submit" name = 'submit' value="Register" class="btn btn-primary">Submit</button>
+    </div>
 </form>
 

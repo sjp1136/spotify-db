@@ -6,9 +6,9 @@
   session_start();
 
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    echo '<pre>'; 
-    print_r($_SESSION['username']);
-    echo '</pre>';
+    // echo '<pre>'; 
+    // print_r($_SESSION['username']);
+    // echo '</pre>';
     header('Location: index.php');
   } 
 
@@ -34,7 +34,7 @@
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $uname; 
         header('Location: index.php');
-        exit;
+        // exit;
       }
       else{
         echo "<div class='alert alert-danger' role='alert'>
@@ -62,7 +62,7 @@
 
 <body>
 <!-- Navbar/Register -->  
-<nav class="navbar fixed-top navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand">Welcome to Spotify4u</a>
   <form class="form-inline">
     <a class="btn btn-outline-success my-2 my-sm-0" href="register.php">CLICK TO REGISTER</a>
@@ -71,7 +71,8 @@
 
 <!-- Navbar/Register -->  
 <form action="/" method="post">
-    <div class="form-group movedown">
+  <div class="">
+    <div class="form-group">
       <label for="uname">Username</label>
       <input class="form-control" type="text" placeholder="Enter Username" name="username" required>
     </div>
@@ -80,6 +81,7 @@
       <input class="form-control" type="password" placeholder="Enter Password" name="password" required>
     </div>
     <button type="submit" name = 'submit' value="LOGIN" class="btn btn-primary">Submit</button>
+  </div>
 </form>   
 
 <!-- <div class="container">
