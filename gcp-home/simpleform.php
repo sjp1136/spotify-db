@@ -6,6 +6,8 @@
 <?php
 $msg = "";
 
+
+
 if(!empty($_POST['db-btn'])){
   if($_POST['db-btn'] == "Create")
       create_table();
@@ -51,7 +53,7 @@ if(!empty($_POST['db-btn'])){
     <br/>
     <?php echo $msg;  ?>
   </form> 
-  <a href="/">Go back to Login</a>
+  <a href="/">Logout</a>
   
 </div>
 </body>

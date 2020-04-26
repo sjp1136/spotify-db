@@ -15,7 +15,7 @@ function getPlaylists($userID, $sortVal){
     $results = $statement->fetchAll();
 
     $statement->closeCursor();
-    return $results;
+    return $results;    
 }
 
 
