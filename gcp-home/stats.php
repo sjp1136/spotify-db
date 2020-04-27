@@ -89,8 +89,8 @@ require("sql.php");
       print_r($results[0])
       ?>
     </form> 
+  <a href="index.php">Go back</a>
   </div>
-<a href="index.php">Go back</a>
   </div>
 
 </div>

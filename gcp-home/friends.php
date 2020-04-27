@@ -100,8 +100,8 @@ require("sql.php");
       }
       ?>
     </table>
-  </div>
 <a href="index.php">Go back</a>
+  </div>
   </div>
 
 </div>
