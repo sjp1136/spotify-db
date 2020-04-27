@@ -85,15 +85,6 @@ if(isset($_POST["username"])){
       ?>
       <h1 class="display-4">Your Stats</h1>
 
-      <div class="form-group">
-      <p class="lead">Song Name</p>
-        <input type="text" class="form-control" name="name"  />     
-        Artist Name
-        <input type="text" class="form-control" name="major" />     
-              <!-- add required if wanted -->
-    </div>  
-
-      <br/>
       <?php 
       // $userID = $_SESSION['userID'];
       // $results = getStats($userID);
