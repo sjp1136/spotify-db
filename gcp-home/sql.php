@@ -30,6 +30,26 @@ function getStats($userID){
     return $results;
 }
 
+function addFriend($friendID, $myID){
+    global $db;
+    $query = "insert into friend values($friendID, $myID)";
+    $query2 = "insert into friend values($myID, $friendID)";
+    $s = $db->prepare($query);
+    $s2 = $db->prepare($query2);
+
+    $s->execute();
+    $s2->execute();
+    $r = $s->fetchAll();
+    $r2 = $s2->fetchAll();
+    $s->closeCursor();
+    $s2->closeCursor();
+    if ($s && $s2){
+        return True;
+    }
+    return False;
+}
+
+
 function getFriends($userID){
     global $db;
     $query = "select u2.username from registered_users as u, friend as f where f.userID=:username and u.usernameID = f.friendID";
