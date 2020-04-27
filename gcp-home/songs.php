@@ -37,7 +37,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 }
 
 
-echo "Hello World" ;
+// echo "Hello World" ;
 require("connectdb.php");
 require("sql.php");
 
@@ -84,10 +84,13 @@ $results = getPlaylists($userID, NULL);
       <input type="submit" value="Insert" class="btn btn-dark" name="db-btn"/>
 
       <br/>
-      <?php echo $msg;  ?>
+      <?php
+      $userID = $_SESSION['userID'];
+      $results = getSongs($userID);
+      ?>
     </form> 
   </div>
-
+<a href="index.php">Go back</a>
   </div>
 
 </div>

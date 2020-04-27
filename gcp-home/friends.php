@@ -1,4 +1,7 @@
+<?php
 
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,13 +40,11 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 }
 
 
-echo "Hello World" ;
+// echo "Hello World" ;
 require("connectdb.php");
 require("sql.php");
 
-$userID = "1";
 
-$results = getPlaylists($userID, NULL);
 
 // echo'<div class="card" style="width: 18rem;">
 //   <img src="..." class="card-img-top" alt="...">
@@ -82,10 +83,25 @@ $results = getPlaylists($userID, NULL);
       <input type="submit" value="Insert" class="btn btn-dark" name="db-btn"/>
 
       <br/>
-      <?php echo $msg;  ?>
+      <?php
+      $userID = $_SESSION['userID'];
+      $results = getFriends($userID);
+      ?>
     </form> 
+    <table>
+      <tr>
+        <td>Name</td>
+      </tr>
+      <?php
+      $userID = $_SESSION['userID'];
+      $results = getPlaylists($userID);
+      foreach($results as $row) {
+        echo "<tr><td>$row['name']</td></tr>";
+      }
+      ?>
+    </table>
   </div>
-
+<a href="index.php">Go back</a>
   </div>
 
 </div>

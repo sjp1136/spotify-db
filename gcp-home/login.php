@@ -33,6 +33,7 @@ session_start();
       if(password_verify($password, $result[0]['password'])){
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $uname; 
+        $_SESSION['userID'] = $result[0]['userID'];     // <<<===============================
         echo '<script> window.location.href="index.php" </script>';
         exit;
       }

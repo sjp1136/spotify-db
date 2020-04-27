@@ -1,4 +1,5 @@
 <?php
+  session_start();
   global $db;
 
   require('connectdb.php');
@@ -12,7 +13,8 @@
     // echo "<h1>".$hash."</h1>";
 
     $query = "insert into registered_users  (username, password) values (:username, :password)";
-
+    echo "<div class='alert alert-success' role='alert'>
+        echo test before query execute</div>" ;
 
     $statement = $db->prepare($query);
     $statement->bindValue(':username', $uname);
@@ -21,6 +23,9 @@
     $result = $statement->execute();
 
     $statement->closeCursor();
+
+    echo "<div class='alert alert-success' role='alert'>
+        echo test before query execute</div>" ;
 
     if($result){
         echo "<div class='alert alert-success' role='alert'>
@@ -42,15 +47,15 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link type="text/css" rel="stylesheet" href="/stylesheets/index.css" />
 </head>
-
-<form action="register.php" method="post">
-    <!-- Navbar/Register -->  
-    <nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand">Welcome to Spotify4u</a>
     <form class="form-inline">
         <a class="btn btn-outline-success my-2 my-sm-0" href="/">LOGIN</a>
     </form>
     </nav>
+<form action="register.php" method="post">
+    <!-- Navbar/Register -->  
+    
     <h1>Register!</h1>
     <div class="form-group">
         <label for="uname">Username</label>
@@ -66,5 +71,5 @@
         <label for="psd"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="password2" required>
     </div> -->
-    <button type="submit" name = 'submit' value="Register" class="btn btn-primary">Submit</button>
+    <button type="submit" name = 'submit' value="REGISTER" class="btn btn-primary">Submit</button>
 </form>

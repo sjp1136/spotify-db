@@ -31,14 +31,14 @@ session_start();
 
 // Login stuff
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-  echo '<pre><h1>'; 
-  print_r($_SESSION['username']);
-  echo '</h1></pre>';
+  // echo '<pre><h1>'; 
+  // print_r($_SESSION['username']);
+  // echo '</h1></pre>';
   // echo "<h1>Welcome to Spotify4U, " . $_SESSION['username'] . "!</h1>";
 }
 
 
-echo "Hello World" ;
+// echo "Hello World" ;
 require("connectdb.php");
 require("sql.php");
 
@@ -81,18 +81,16 @@ require("sql.php");
         <input type="text" class="form-control" name="major" />     
               <!-- add required if wanted -->
       </div>  
-      <input type="submit" value="Create" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Drop" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Insert" class="btn btn-dark" name="db-btn"/>
 
       <br/>
       <?php 
-      $userID = $_SESSION['usernameID'];
+      $userID = $_SESSION['userID'];
       $results = getStats($userID);
+      print_r($results[0])
       ?>
     </form> 
   </div>
-
+<a href="index.php">Go back</a>
   </div>
 
 </div>

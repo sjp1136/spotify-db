@@ -37,13 +37,13 @@ session_start();
 <div class="container">
 <?php
 
-echo $_SESSION['loggedin'];
+// echo $_SESSION['loggedin'];
 // Login stuff
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-  echo '<pre>'; 
-  print_r($_SESSION['username']);
-  echo '</pre>';
-  echo '<h1>HELLOOOO' . $_SESSION['username'] .'</h1>';
+  // echo '<pre>'; 
+  // print_r($_SESSION['username']);
+  // echo '</pre>';
+  // echo '<h1>HELLOOOO' . $_SESSION['username'] .'</h1>';
 
   // echo "<h1>Welcome to Spotify4U, " . $_SESSION['username'] . "!</h1>";
 }
@@ -54,13 +54,13 @@ else{
   exit;
 }
 
-echo "Hello World" ;
+echo "Hello $_SESSION['username']" ;
 require("connectdb.php");
 require("sql.php");
 
-$userID = "1";
+// $userID = "1";
 
-$results = getPlaylists($userID, NULL);
+// $results = getPlaylists($userID, NULL);
 
 // echo'<div class="card" style="width: 18rem;">
 //   <img src="..." class="card-img-top" alt="...">

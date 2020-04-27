@@ -86,19 +86,20 @@ require("sql.php");
     </form> 
     <table>
       <tr>
-        <td>Name</td>
-        <td>Length</td>
+        <td>Title</td>
+        <td>Artist</td>
+        <td>Duration</td>
       </tr>
       <?php
-      $userID = $_SESSION['userID'];
-      $results = getPlaylists($userID);
+      $pID = $_GET['pID'];
+      $results = getPlaylistSongs($pID, NULL);
       foreach($results as $row) {
-        echo "<tr><td><a href='playlist.php?id=$row['pID']'>$row['name']</a></td><td>$row['numSongs']</td></tr>";
+        echo "<tr><td>$row['title']</td><td>$row['artist']</td><td>$row['duration']</td></tr>";
       }
       ?>
     </table>
   </div>
-<a href="index.php">Go back</a>
+<a href="playlists.php">Go back</a>
   </div>
 
 </div>
