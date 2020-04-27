@@ -46,6 +46,11 @@ else{
 }
 
 
+// delete friends
+if(isset($_POST["friend"])){
+
+}
+
 // echo "Hello World" ;
 require("connectdb.php");
 require("sql.php");
@@ -54,12 +59,21 @@ require("sql.php");
 
 
 <div class="jumbotron jumbotron-fluid movedown">
-<div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
 
   <!-- Your Friends -->
   <div class="container" id ="friends">
+    <form method = "post" action = "">
+      <div class="form-group">
+          <label for="">Delete Friend</label>
+          <input class="form-control" type="text" placeholder="Enter Friend ID" name="friend" required>
+        </div>
+        <button type="submit" name = 'submit' value="LOGIN" class="btn btn-primary">Submit</button>
+    </form>
+    <a href="index.php">Go back</a>
+
     <form action="index.php" method="post">
     <h1 class="display-4">Your Friends</h1>
+
       <?php
       // $userID = $_SESSION['usernameID'];
       // $results = getFriends($userID);
@@ -79,13 +93,17 @@ require("sql.php");
   
       $results = $statement->fetchAll();
 
-      
+      $userID = $_SESSION['usernameID'];
+      $results = getFriends($userID);
+
       foreach($results as $row) {
-        echo "<tr><td>" . $row['username'] . "</td></tr>";
+        echo "<tr><td>"  .$row['usernameID'].  " ". $row['username'] . "</td></tr>";
       }
       ?>
     </table>
-<a href="index.php">Go back</a>
+
+
+
   <!-- </div> -->
   </div>
 

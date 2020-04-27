@@ -32,8 +32,10 @@ function getStats($userID){
 
 function getFriends($userID){
     global $db;
-    $query = "select u.name from user as u, friend as f where f.userID = $userID and f.friendID=u.userID";
+    $query = "select u2.username from registered_users as u, friend as f where f.userID=:username and u.usernameID = f.friendID";
     $statement = $db->prepare($query);
+    $statement->bindValue(':username',$userID);
+
     $statement->execute();
 
     $results = $statement->fetchAll();
