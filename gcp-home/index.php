@@ -54,7 +54,9 @@ else{
   exit;
 }
 
-echo "Hello $_SESSION['username']" ;
+$uname = $_SESSION['username'];
+echo "Hello" .$uname. "!"; 
+
 require("connectdb.php");
 require("sql.php");
 

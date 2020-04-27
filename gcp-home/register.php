@@ -13,8 +13,8 @@
     // echo "<h1>".$hash."</h1>";
 
     $query = "insert into registered_users  (username, password) values (:username, :password)";
-    echo "<div class='alert alert-success' role='alert'>
-        echo test before query execute</div>" ;
+    // echo "<div class='alert alert-success' role='alert'>
+    //     echo test before query execute</div>" ;
 
     $statement = $db->prepare($query);
     $statement->bindValue(':username', $uname);
@@ -24,8 +24,8 @@
 
     $statement->closeCursor();
 
-    echo "<div class='alert alert-success' role='alert'>
-        echo test before query execute</div>" ;
+    // echo "<div class='alert alert-success' role='alert'>
+    //     echo test before query execute</div>" ;
 
     if($result){
         echo "<div class='alert alert-success' role='alert'>
