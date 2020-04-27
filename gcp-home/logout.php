@@ -1,9 +1,8 @@
-
 <?php
 session_start();
 session_destroy();
 echo "<div class='alert alert-success' role='alert'>You have been logged out.</div>" ;
-echo '<a class="btn btn-primary" href="/">Go back</a>';
+echo '<a href="/">Go back</a>';
 ?>
 
 <head>

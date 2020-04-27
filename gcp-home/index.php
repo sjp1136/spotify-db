@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,29 +14,39 @@
 <body>
 
 <!-- Navbar -->
-<nav class="navbar fixed-top navbar-dark bg-dark">
-  <a class="navbar-brand">Spotify4u - Main Menu</a>
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand">Welcome to Spotify4u</a>
   <form class="form-inline">
     <a class="btn btn-outline-success my-2 my-sm-0" href="logout.php">LOGOUT</a>
   </form>
 </nav>
 
+<!-- Potential scrollbar -->
+<div id="list-example" class="list-group movedown">
+  <a class="list-group-item list-group-item-action" href="#stats">Stats</a>
+  <a class="list-group-item list-group-item-action" href="#friends">Friends</a>
+  <a class="list-group-item list-group-item-action" href="#songs">Songs</a>
+  <a class="list-group-item list-group-item-action" href="#playlists">Playlists</a>
+</div>
+
 
 <div class="container">
 <?php
-
 session_start();
 
 // Login stuff
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-  echo '<pre><h1 class="movedown">'; 
+  echo '<pre>'; 
   print_r($_SESSION['username']);
-  echo '</h1></pre>';
+  echo '</pre>';
   // echo "<h1>Welcome to Spotify4U, " . $_SESSION['username'] . "!</h1>";
 }
+else{
+  header('Location: login.php');
+  exit;
+}
 
-
-// echo "Hello World" ;
+echo "Hello World" ;
 require("connectdb.php");
 require("sql.php");
 
@@ -57,19 +66,10 @@ $results = getPlaylists($userID, NULL);
 ?>
 </div>  
 
-
-<!-- Potential scrollbar -->
-<div id="list-example" class="list-group movedown">
-  <a class="list-group-item list-group-item-action" href="#stats">Your Stats</a>
-  <a class="list-group-item list-group-item-action" href="#friends">Your Friends</a>
-  <a class="list-group-item list-group-item-action" href="#songs">Your Songs</a>
-  <a class="list-group-item list-group-item-action" href="#playlists">Your Playlists</a>
-</div>
-
-<div class="jumbotron jumbotron-fluid movedown">
+<!-- Your Stats -->
 <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
-  
-  <!-- Your Stats -->
+
+<div class="jumbotron jumbotron-fluid">
   <div class="container" id ="stats">
     <form action="index.php" method="post">
       <h1 class="display-4">Your Stats</h1>
@@ -92,9 +92,9 @@ $results = getPlaylists($userID, NULL);
   <!-- Your Friends -->
   <div class="container" id ="friends">
     <form action="index.php" method="post">
-    <h1 class="display-4">Your Friends</h1>
+      <h1>Your Friends</h1>
       <div class="form-group">
-      <p class="lead">Song Name</p>
+        Friend Name
         <input type="text" class="form-control" name="name"  />     
       </div>  
       <input type="submit" value="Create" class="btn btn-dark" name="db-btn"/>
@@ -109,11 +109,11 @@ $results = getPlaylists($userID, NULL);
   <!-- Your Songs -->
   <div class="container" id ="songs">
     <form action="index.php" method="post">
-    <h1 class="display-4">Your Songs</h1>
+      <h1>Your Songs</h1>
       <div class="form-group">
-      <p class="lead">Song Name</p>
+        Song Name
         <input type="text" class="form-control" name="name"  />     
-        <p class="lead">Artist Name</p>
+        Artist Name
         <input type="text" class="form-control" name="major" />     
       </div>  
       <input type="submit" value="Create" class="btn btn-dark" name="db-btn"/>
@@ -128,11 +128,11 @@ $results = getPlaylists($userID, NULL);
   <!-- Your Playlists -->
   <div class="container" id ="playlists">
     <form action="index.php" method="post">
-    <h1 class="display-4">Your Playlists</h1>
+      <h1>Your Playlists</h1>
       <div class="form-group">
-      <p class="lead">Playlist Name</p>
+        Playlist Name
         <input type="text" class="form-control" name="name"  />     
-        <p class="lead">Creator Name</p>
+        Creator Name
         <input type="text" class="form-control" name="major" />    
       </div>  
       <input type="submit" value="Create" class="btn btn-dark" name="db-btn"/>
