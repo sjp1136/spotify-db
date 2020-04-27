@@ -5,12 +5,11 @@
 
   session_start();
 
+
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    echo '<pre>'; 
-    print_r($_SESSION['username']);
-    echo '</pre>';
-    header('Location: index.php');
-  } 
+    // echo '<h1>HELLOOOO' . $_SESSION['username'] .'</h1>';
+    echo '<script> window.location.href="index.php" </script>'; 
+  }
 
   if(isset($_POST["username"])){
 

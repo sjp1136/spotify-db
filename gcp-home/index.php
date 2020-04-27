@@ -17,6 +17,7 @@
 <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand">Welcome to Spotify4u</a>
   <form class="form-inline">
+  
     <a class="btn btn-outline-success my-2 my-sm-0" href="logout.php">LOGOUT</a>
   </form>
 </nav>
@@ -39,10 +40,14 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
   echo '<pre>'; 
   print_r($_SESSION['username']);
   echo '</pre>';
+  echo '<h1>HELLOOOO' . $_SESSION['username'] .'</h1>';
+
   // echo "<h1>Welcome to Spotify4U, " . $_SESSION['username'] . "!</h1>";
 }
 else{
-  header('Location: login.php');
+  // header('Location: login.php');
+  echo '<script> window.location.href="/" </script>'; 
+
   exit;
 }
 
