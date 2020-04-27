@@ -93,7 +93,7 @@ require("sql.php");
       $userID = $_SESSION['userID'];
       $results = getPlaylists($userID);
       foreach($results as $row) {
-        echo "<tr><td><a href='playlist.php?id=$row['pID']'>$row['name']</a></td><td>$row['numSongs']</td></tr>";
+        echo "<tr><td><a href='playlist.php?id=" .$row['pID']. "'>" .$row['name']. "</a></td><td>" .$row['numSongs']. "</td></tr>";
       }
       ?>
     </table>

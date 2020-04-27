@@ -94,7 +94,7 @@ require("sql.php");
       $pID = $_GET['pID'];
       $results = getPlaylistSongs($pID, NULL);
       foreach($results as $row) {
-        echo "<tr><td>$row['title']</td><td>$row['artist']</td><td>$row['duration']</td></tr>";
+        echo "<tr><td>" .$row['title']. "</td><td>" .$row['artist']. "</td><td>" .$row['duration']. "</td></tr>";
       }
       ?>
     </table>

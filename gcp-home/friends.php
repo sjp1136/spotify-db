@@ -38,34 +38,20 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
   echo '</h1></pre>';
   // echo "<h1>Welcome to Spotify4U, " . $_SESSION['username'] . "!</h1>";
 }
+else{
+  // header('Location: login.php');
+  echo '<script> window.location.href="/" </script>'; 
+
+  exit;
+}
 
 
 // echo "Hello World" ;
 require("connectdb.php");
 require("sql.php");
-
-
-
-// echo'<div class="card" style="width: 18rem;">
-//   <img src="..." class="card-img-top" alt="...">
-//   <div class="card-body">
-//     <h5 class="card-title">Card title</h5>
-//     <p class="card-text">'. $results .
-//     '</p>
-//     <a href="#" class="btn btn-primary">Go somewhere</a>
-//   </div>
-// </div>';
 ?>
 </div>  
 
-
-<!-- Potential scrollbar -->
-<!-- <div id="list-example" class="list-group movedown">
-  <a class="list-group-item list-group-item-action" href="#stats">Your Stats</a>
-  <a class="list-group-item list-group-item-action" href="#friends">Your Friends</a>
-  <a class="list-group-item list-group-item-action" href="#songs">Your Songs</a>
-  <a class="list-group-item list-group-item-action" href="#playlists">Your Playlists</a>
-</div> -->
 
 <div class="jumbotron jumbotron-fluid movedown">
 <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
@@ -96,7 +82,7 @@ require("sql.php");
       $userID = $_SESSION['userID'];
       $results = getPlaylists($userID);
       foreach($results as $row) {
-        echo "<tr><td>$row['name']</td></tr>";
+        echo "<tr><td>" . $row . "['name']</td></tr>";
       }
       ?>
     </table>
