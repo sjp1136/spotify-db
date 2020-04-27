@@ -89,8 +89,8 @@ $results = getPlaylists($userID, NULL);
       $results = getSongs($userID);
       ?>
     </form> 
-  </div>
 <a href="index.php">Go back</a>
+  </div>
   </div>
 
 </div>

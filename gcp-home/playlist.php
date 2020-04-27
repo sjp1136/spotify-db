@@ -98,8 +98,8 @@ require("sql.php");
       }
       ?>
     </table>
-  </div>
 <a href="playlists.php">Go back</a>
+  </div>
   </div>
 
 </div>
