@@ -2,6 +2,8 @@
 session_start();
 session_destroy();
 echo "<div class='alert alert-success' role='alert'>You have been logged out.</div>" ;
+echo '<script> window.location.href="/" </script>';
+
 echo '<a href="/">Go back</a>';
 ?>
 

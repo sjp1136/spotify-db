@@ -1,5 +1,40 @@
 <?php
 session_start();
+
+
+// echo $_SESSION['loggedin'];
+// Login stuff
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+  // echo '<pre>'; 
+  // print_r($_SESSION['username']);
+  // echo '</pre>';
+  // echo '<h1>HELLOOOO' . $_SESSION['username'] .'</h1>';
+
+  // echo "<h1>Welcome to Spotify4U, " . $_SESSION['username'] . "!</h1>";
+}
+else{
+  // header('Location: login.php');
+  echo '<script> window.location.href="/" </script>'; 
+
+  exit;
+}
+
+require("connectdb.php");
+require("sql.php");
+
+// $userID = "1";
+
+// $results = getPlaylists($userID, NULL);
+
+// echo'<div class="card" style="width: 18rem;">
+//   <img src="..." class="card-img-top" alt="...">
+//   <div class="card-body">
+//     <h5 class="card-title">Card title</h5>
+//     <p class="card-text">'. $results .
+//     '</p>
+//     <a href="#" class="btn btn-primary">Go somewhere</a>
+//   </div>
+// </div>';
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,6 +60,11 @@ session_start();
   </form>
 </nav>
 
+<?php
+$uname = $_SESSION['username'];
+echo "<h1>HELLO, " .$uname. "!</h1>"; 
+?>
+
 <!-- Potential scrollbar -->
 <div id="list-example" class="list-group movedown">
   <a class="list-group-item list-group-item-action" href="stats.php">Stats</a>
@@ -35,45 +75,7 @@ session_start();
 
 
 <div class="container">
-<?php
 
-// echo $_SESSION['loggedin'];
-// Login stuff
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-  // echo '<pre>'; 
-  // print_r($_SESSION['username']);
-  // echo '</pre>';
-  // echo '<h1>HELLOOOO' . $_SESSION['username'] .'</h1>';
-
-  // echo "<h1>Welcome to Spotify4U, " . $_SESSION['username'] . "!</h1>";
-}
-else{
-  // header('Location: login.php');
-  echo '<script> window.location.href="/" </script>'; 
-
-  exit;
-}
-
-$uname = $_SESSION['username'];
-echo "Hello " .$uname. "!"; 
-
-require("connectdb.php");
-require("sql.php");
-
-// $userID = "1";
-
-// $results = getPlaylists($userID, NULL);
-
-// echo'<div class="card" style="width: 18rem;">
-//   <img src="..." class="card-img-top" alt="...">
-//   <div class="card-body">
-//     <h5 class="card-title">Card title</h5>
-//     <p class="card-text">'. $results .
-//     '</p>
-//     <a href="#" class="btn btn-primary">Go somewhere</a>
-//   </div>
-// </div>';
-?>
 </div>  
 
 <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">

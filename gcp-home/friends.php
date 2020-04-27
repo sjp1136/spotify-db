@@ -60,18 +60,9 @@ require("sql.php");
   <div class="container" id ="friends">
     <form action="index.php" method="post">
     <h1 class="display-4">Your Friends</h1>
-      <div class="form-group">
-      <p class="lead">Song Name</p>
-        <input type="text" class="form-control" name="name"  />     
-      </div>  
-      <input type="submit" value="Create" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Drop" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Insert" class="btn btn-dark" name="db-btn"/>
-
-      <br/>
       <?php
-      $userID = $_SESSION['userID'];
-      $results = getFriends($userID);
+      // $userID = $_SESSION['usernameID'];
+      // $results = getFriends($userID);
       ?>
     </form> 
     <table>
@@ -79,15 +70,23 @@ require("sql.php");
         <td>Name</td>
       </tr>
       <?php
+      global $db;
       $userID = $_SESSION['userID'];
-      $results = getPlaylists($userID);
+
+      $query = "select * from registered_users";
+      $statement = $db->prepare($query);
+      $statement->execute();
+  
+      $results = $statement->fetchAll();
+
+      
       foreach($results as $row) {
-        echo "<tr><td>" . $row . "['name']</td></tr>";
+        echo "<tr><td>" . $row['username'] . "</td></tr>";
       }
       ?>
     </table>
 <a href="index.php">Go back</a>
-  </div>
+  <!-- </div> -->
   </div>
 
 </div>
