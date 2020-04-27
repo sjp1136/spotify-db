@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 ?>
 <!DOCTYPE html>
@@ -18,7 +17,7 @@ session_start();
 <body>
 
 <!-- Navbar -->
-<nav class="navbar fixed-top navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand">Spotify4u - Friends</a>
   <form class="form-inline">
     <a class="btn btn-outline-success my-2 my-sm-0" href="logout.php">LOGOUT</a>
@@ -28,83 +27,176 @@ session_start();
 
 <div class="container">
 <?php
+global $db;
+require("connectdb.php");
+require("sql.php");
 
-session_start();
 
 // Login stuff
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-  echo '<pre><h1>'; 
-  print_r($_SESSION['username']);
-  echo '</h1></pre>';
-  // echo "<h1>Welcome to Spotify4U, " . $_SESSION['username'] . "!</h1>";
 }
 else{
-  // header('Location: login.php');
   echo '<script> window.location.href="/" </script>'; 
-
   exit;
 }
+ 
+// add friends
+if(isset($_POST["friendID2"])){
+  $userID = $_SESSION['userID'];
+  $friendID = $_POST['friendID2'];
+
+  $query = "insert into friend  (userID, friendID) values (:userID, :friendID)";
+
+  // one side
+  $statement = $db->prepare($query);
+  $statement->bindValue(':userID', (int)$userID, PDO::PARAM_INT);
+  $statement->bindValue(':friendID', (int)$friendID, PDO::PARAM_INT);
+  $result = $statement->execute();
+
+  // other side
+  $statement = $db->prepare($query);
+  $statement->bindValue(':friendID', (int)$userID, PDO::PARAM_INT);
+  $statement->bindValue(':userID', (int)$friendID, PDO::PARAM_INT);
+  $result = $statement->execute();
 
 
-// delete friends
-if(isset($_POST["friend"])){
-
+  if($statement->rowCount() != 0){
+    echo "<div class='alert alert-success movedown2' role='alert'>
+    You have added a friend!</div>" ;
+  }
+  else{
+      echo "<div class='alert alert-danger movedown2' role='alert'>
+      Error! That username does not exists!</div>";    
+  }
+  // $result = $statement->fetchAll(); //fetch()
+  $statement->closeCursor();
 }
 
-// echo "Hello World" ;
-require("connectdb.php");
-require("sql.php");
+// delete friends
+if(isset($_POST["friendID"])){
+  $userID = $_SESSION['userID'];
+  $friendID = $_POST['friendID'];
+  $query = "delete from friend where friend.userID = :userID and friend.friendID = :friendID";
+  $statement = $db->prepare($query);
+  $statement->bindValue(':userID', (int)$userID, PDO::PARAM_INT);
+
+  $statement->bindValue(':friendID', (int)$friendID, PDO::PARAM_INT);
+
+  $result = $statement->execute();
+
+
+  if($statement->rowCount() != 0){
+    echo "<div class='alert alert-success movedown2' role='alert'>
+    You have deleted a friend!</div>" ;
+  }
+  else{
+      echo "<div class='alert alert-danger movedown2' role='alert'>
+      Error! That username does not exists!</div>";    
+  }
+  // $result = $statement->fetchAll(); //fetch()
+  $statement->closeCursor();
+}
+
 ?>
 </div>  
 
 
-<div class="jumbotron jumbotron-fluid movedown">
+<div class="jumbotron jumbotron-fluid">
+<a href="index.php">Go back</a>
 
   <!-- Your Friends -->
   <div class="container" id ="friends">
+    <!-- Search Users -->
     <form method = "post" action = "">
       <div class="form-group">
-          <label for="">Delete Friend</label>
-          <input class="form-control" type="text" placeholder="Enter Friend ID" name="friend" required>
+      <h1 class="display-4">Search Users</h1>
+          <input class="form-control" type="text" placeholder="Enter username (type '%' for all users)" name="username" required>
         </div>
         <button type="submit" name = 'submit' value="LOGIN" class="btn btn-primary">Submit</button>
     </form>
-    <a href="index.php">Go back</a>
 
-    <form action="index.php" method="post">
-    <h1 class="display-4">Your Friends</h1>
-
-      <?php
-      // $userID = $_SESSION['usernameID'];
-      // $results = getFriends($userID);
-      ?>
-    </form> 
+    <h4 class="">All Users</h1>
     <table>
-      <tr>
-        <td>Name</td>
-      </tr>
+
       <?php
       global $db;
       $userID = $_SESSION['userID'];
+      $username = "";
 
-      $query = "select * from registered_users";
-      $statement = $db->prepare($query);
-      $statement->execute();
-  
-      $results = $statement->fetchAll();
-
-      $userID = $_SESSION['usernameID'];
-      $results = getFriends($userID);
+      if(isset($_POST["username"])){
+        $username = $_POST["username"];
+      }
+      $results = searchUsers($username);
 
       foreach($results as $row) {
-        echo "<tr><td>"  .$row['usernameID'].  " ". $row['username'] . "</td></tr>";
+        echo "<tr><td>"  .$row['usernameID'].  " " . $row['username'] . "</td></tr>";
       }
       ?>
     </table>
+    <hr>
 
+    <!-- Add Friends -->
+    <form method = "post" action = "">
+      <div class="form-group">
+      <h1 class="display-4">Add Friend</h1>
+          <input class="form-control" type="text" placeholder="Enter friendID" name="friendID2" required>
+        </div>
+        <button type="submit" name = 'submit' value="LOGIN" class="btn btn-primary">Submit</button>
+    </form>
 
+    <!-- <h4 class="">All Users</h1> -->
+    <!-- <table> -->
 
-  <!-- </div> -->
+      <?php
+      // global $db;
+      // // $userID = $_SESSION['userID'];
+      // $results = getUsers($sort);
+
+      // foreach($results as $row) {
+      //   echo "<tr><td>"  .$row['usernameID'].  " " . $row['username'] . "</td></tr>";
+      // }
+      ?>
+    <!-- </table> -->
+
+    <!-- <hr> -->
+
+    <!-- Delete/Sort Friends -->
+    <form method = "post" action = "">
+      <div class="form-group">
+          <h1 class="display-4">Delete Friend</h1>
+          <input class="form-control" type="text" placeholder="Enter friendID" name="friendID" required>
+        </div>
+        <button type="submit" name = 'submit' value="LOGIN" class="btn btn-primary">Submit</button>
+    </form>
+
+    <form method = "post" action = "">
+      <div class="form-group">
+          <h1 class="display-4">Sort Friend</h1>
+          <input class="form-control" type="text" placeholder="Type 'sortid' to sort by ID or 'sortname' to sort by username" name="sort" required>
+      </div>
+      <button type="submit" name = 'submit' value="LOGIN" class="btn btn-primary">Sort</button>
+    </form>
+
+    <h4 class="">Your Friends</h1>
+    <table>
+
+      <?php
+      global $db;
+      $userID = $_SESSION['userID'];
+      $sort = "";
+
+      if(isset($_POST["sort"])){
+        $sort = $_POST["sort"];
+      }
+      $results = getFriends($userID, $sort);
+      
+      foreach($results as $row) {
+        echo "<tr><td>"  .$row['usernameID'].  " " . $row['username'] . "</td></tr>";
+      }
+      ?>
+    </table>
+    <!-- <a href="index.php">Go back</a> -->
+
   </div>
 
 </div>

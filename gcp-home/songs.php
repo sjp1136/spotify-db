@@ -1,4 +1,7 @@
+<?php
+session_start();
 
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,74 +29,126 @@
 <div class="container">
 <?php
 
-session_start();
-
-// Login stuff
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-  echo '<pre><h1>'; 
-  print_r($_SESSION['username']);
-  echo '</h1></pre>';
-  // echo "<h1>Welcome to Spotify4U, " . $_SESSION['username'] . "!</h1>";
-}
-
-
-// echo "Hello World" ;
 require("connectdb.php");
 require("sql.php");
-
-$userID = "1";
-
-$results = getPlaylists($userID, NULL);
-
-// echo'<div class="card" style="width: 18rem;">
-//   <img src="..." class="card-img-top" alt="...">
-//   <div class="card-body">
-//     <h5 class="card-title">Card title</h5>
-//     <p class="card-text">'. $results .
-//     '</p>
-//     <a href="#" class="btn btn-primary">Go somewhere</a>
-//   </div>
-// </div>';
+// Login stuff
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+}
+else{
+  echo '<script> window.location.href="/" </script>'; 
+  exit;
+}
 ?>
 </div>  
 
 
-<!-- Potential scrollbar -->
-<!-- <div id="list-example" class="list-group movedown">
-  <a class="list-group-item list-group-item-action" href="#stats">Your Stats</a>
-  <a class="list-group-item list-group-item-action" href="#friends">Your Friends</a>
-  <a class="list-group-item list-group-item-action" href="#songs">Your Songs</a>
-  <a class="list-group-item list-group-item-action" href="#playlists">Your Playlists</a>
-</div> -->
-
 <div class="jumbotron jumbotron-fluid movedown">
-<div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
-  
+      <?php
+      // Add songs
+      if(isset($_POST["song"]) && isset($_POST["artist"]) && 
+      isset($_POST["songID"]) && isset($_POST["genre"])&& isset($_POST["duration"])){
+        // $userID = $_SESSION['userID'];
+        $songID = $_POST['songID'];
+        $song = $_POST['song'];
+        $artist = $_POST['artist'];
+        $duration = $_POST['duration'];
+        $genre = $_POST['genre'];
+
+        // $query = "insert into friend (userID, friendID) values (:userID, :friendID)";
+        $query = "insert into song VALUES (:songID, :duration, :artist, :genre, :song, 10);";
+
+        $statement = $db->prepare($query);
+        $statement->bindValue(':songID', (int)$songID, PDO::PARAM_INT);
+        $statement->bindValue(':song', $song);
+        $statement->bindValue(':artist', $artist);
+        $statement->bindValue(':duration', (int)$duration, PDO::PARAM_INT);
+        $statement->bindValue(':genre', $genre);
+
+        $result = $statement->execute();
+
+
+        if($statement->rowCount() != 0){
+          echo "<div class='alert alert-success movedown2' role='alert'>
+          You have added a song!</div>" ;
+        }
+        else{
+            echo "<div class='alert alert-danger movedown2' role='alert'>
+            Error! Could not add song!</div>";    
+        }
+        $statement->closeCursor();
+      }
+
+      // delete songs
+      if(isset($_POST["songID2"])){
+        // $userID = $_SESSION['userID'];
+        $songID = $_POST['songID2'];
+
+        // $query = "insert into friend (userID, friendID) values (:userID, :friendID)";
+        $query = "delete from song where song.songID = :songID";
+
+        $statement = $db->prepare($query);
+        $statement->bindValue(':songID', (int)$songID, PDO::PARAM_INT);
+
+        $result = $statement->execute();
+
+        if($statement->rowCount() != 0){
+          echo "<div class='alert alert-success movedown2' role='alert'>
+          You have removed a song!</div>" ;
+        }
+        else{
+            echo "<div class='alert alert-danger movedown2' role='alert'>
+            Error! Could not remove song!</div>";    
+        }
+        $statement->closeCursor();
+      }
+    ?>
   <!-- Your Songs -->
   <div class="container" id ="songs">
-    <form action="index.php" method="post">
-    <h1 class="display-4">Your Songs</h1>
+    <a href="index.php">Go back</a>
+
+    <form action="" method="post">
+    <h1 class="display-4">Add Songs</h1>
       <div class="form-group">
+      <p class="lead">SongID</p>
+        <input type="text" class="form-control" name="songID" required/>    
       <p class="lead">Song Name</p>
-        <input type="text" class="form-control" name="name"  />     
+        <input type="text" class="form-control" name="song" required/>     
         <p class="lead">Artist Name</p>
-        <input type="text" class="form-control" name="major" />     
+        <input type="text" class="form-control" name="artist" required/>    
+        <p class="lead">Genre</p>
+        <input type="text" class="form-control" name="genre" required/>   
+        <p class="lead">Duration (seconds)</p>
+        <input type="text" class="form-control" name="duration" required/>    
       </div>  
-      <input type="submit" value="Create" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Drop" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Insert" class="btn btn-dark" name="db-btn"/>
-
+      <button type="submit" value="Drop" class="btn btn-primary" name="button">Insert</button>
       <br/>
-      <?php
-      $userID = $_SESSION['userID'];
-      $results = getSongs($userID);
-      ?>
     </form> 
-<a href="index.php">Go back</a>
-  </div>
+
+    <hr>
+
+    <form action="" method="post">
+    <h1 class="display-4">Delete Songs</h1>
+      <div class="form-group">
+      <p class="lead">SongID</p>
+        <input type="text" class="form-control" name="songID2" required/> 
+      </div>  
+      <button type="submit" value="Drop" class="btn btn-primary" name="button">Delete</button>
+      <br/>
+    </form> 
+
+    <table>
+
+    <?php
+      $results = getSongs();
+      foreach($results as $row) {
+        echo "<tr><td>"  .$row['songID']." ".$row['title']." by ".$row['artist']."</td></tr>";
+      }
+    ?>
+  </table>
+
+      </div>
   </div>
 
-</div>
 
 </body>
 </html>

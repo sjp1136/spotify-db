@@ -30,18 +30,66 @@ function getStats($userID){
     return $results;
 }
 
-function getFriends($userID){
+function getFriends($userID, $sort){
     global $db;
-    $query = "select u2.username from registered_users as u, friend as f where f.userID=:username and u.usernameID = f.friendID";
+    if($sort == "sortid"){
+        $query = "select * from registered_users as u, friend as f where f.userID=:userID and u.usernameID = f.friendID order by usernameID asc";
+    }
+    else if($sort == "sortname"){
+        $query = "select * from registered_users as u, friend as f where f.userID=:userID and u.usernameID = f.friendID order by username asc";
+    }
+    else{
+        $query = "select * from registered_users as u, friend as f where f.userID=:userID and u.usernameID = f.friendID";
+    }
     $statement = $db->prepare($query);
-    $statement->bindValue(':username',$userID);
-
+    $statement->bindValue(':userID', (int) $userID, PDO::PARAM_INT);
     $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
 
-    $results = $statement->fetchAll();
+    return $result;
+}
 
-    $statement-closeCursor();
-    return $results;
+function getUsers(){
+    global $db;
+
+    $query = "select * from registered_users";
+    $statement = $db->prepare($query);
+    // $statement->bindValue(':userID', (int) $userID, PDO::PARAM_INT);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+
+    return $result;
+}
+
+function getSongs(){
+    global $db;
+
+    $query = "select * from song";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+
+    return $result;
+}
+
+function searchUsers($username){
+    global $db; 
+
+    $tag = '%';
+    $username = $username."".$tag; 
+
+    $query = "select * from registered_users where username like :username";
+
+    $statement = $db->prepare($query);
+    $statement->bindValue(':username', $username);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+
+    return $result;
 }
 
 function getPlaylistCreator($playlistID){
@@ -98,17 +146,17 @@ function searchSongs($searchQuery){
     return $results;
 }
 
-function searchUsers($searchQuery){
-    global $db;
-    $query = "select name from user where name like '%$searchQuery%';";    
-    $statement = $db->prepare($query);
-    $statement->execute();
+// function searchUsers($searchQuery){
+//     global $db;
+//     $query = "select name from user where name like '%$searchQuery%';";    
+//     $statement = $db->prepare($query);
+//     $statement->execute();
     
-    $results = $statement->fetchAll();
+//     $results = $statement->fetchAll();
 
-    $statement->closeCursor();
-    return $results;
-}
+//     $statement->closeCursor();
+//     return $results;
+// }
 
 // function create_table(){
 //     global $db;

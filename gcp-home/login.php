@@ -38,11 +38,11 @@ session_start();
         exit;
       }
       else{
-        echo "<div class='alert alert-danger' role='alert'>
+        echo "<div class='alert alert-danger movedown' role='alert'>
         Login Fail!</div>" ;      }
     }
     else{
-      echo "<div class='alert alert-danger' role='alert'>
+      echo "<div class='alert alert-danger movedown' role='alert'>
       Login Fail!</div>" ;      }
 
   }
