@@ -1,9 +1,10 @@
 <?php
+session_start();
   global $db;
   require('connectdb.php');
   require('sql.php');
 
-  session_start();
+  
 
 
   if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
@@ -32,7 +33,7 @@
       if(password_verify($password, $result[0]['password'])){
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $uname; 
-        header('Location: index.php');
+        echo '<script> window.location.href="index.php" </script>';
         exit;
       }
       else{

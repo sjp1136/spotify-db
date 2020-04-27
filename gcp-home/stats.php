@@ -1,4 +1,7 @@
+<?php
 
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +19,7 @@
 
 <!-- Navbar -->
 <nav class="navbar fixed-top navbar-dark bg-dark">
-  <a class="navbar-brand">Welcome to Spotify4u</a>
+  <a class="navbar-brand">Spotify4u - Statistics</a>
   <form class="form-inline">
     <a class="btn btn-outline-success my-2 my-sm-0" href="logout.php">LOGOUT</a>
   </form>
@@ -25,8 +28,6 @@
 
 <div class="container">
 <?php
-
-session_start();
 
 // Login stuff
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
@@ -41,9 +42,9 @@ echo "Hello World" ;
 require("connectdb.php");
 require("sql.php");
 
-$userID = "1";
 
-$results = getPlaylists($userID, NULL);
+
+
 
 // echo'<div class="card" style="width: 18rem;">
 //   <img src="..." class="card-img-top" alt="...">
@@ -59,12 +60,12 @@ $results = getPlaylists($userID, NULL);
 
 
 <!-- Potential scrollbar -->
-<div id="list-example" class="list-group movedown">
+<!-- <div id="list-example" class="list-group movedown">
   <a class="list-group-item list-group-item-action" href="#stats">Your Stats</a>
   <a class="list-group-item list-group-item-action" href="#friends">Your Friends</a>
   <a class="list-group-item list-group-item-action" href="#songs">Your Songs</a>
   <a class="list-group-item list-group-item-action" href="#playlists">Your Playlists</a>
-</div>
+</div> -->
 
 <div class="jumbotron jumbotron-fluid movedown">
 <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
@@ -85,64 +86,13 @@ $results = getPlaylists($userID, NULL);
       <input type="submit" value="Insert" class="btn btn-dark" name="db-btn"/>
 
       <br/>
-      <?php echo $msg;  ?>
+      <?php 
+      $userID = $_SESSION['usernameID'];
+      $results = getStats($userID);
+      ?>
     </form> 
   </div>
 
-  <!-- Your Friends -->
-  <div class="container" id ="friends">
-    <form action="index.php" method="post">
-    <h1 class="display-4">Your Friends</h1>
-      <div class="form-group">
-      <p class="lead">Song Name</p>
-        <input type="text" class="form-control" name="name"  />     
-      </div>  
-      <input type="submit" value="Create" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Drop" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Insert" class="btn btn-dark" name="db-btn"/>
-
-      <br/>
-      <?php echo $msg;  ?>
-    </form> 
-  </div>
-
-  <!-- Your Songs -->
-  <div class="container" id ="songs">
-    <form action="index.php" method="post">
-    <h1 class="display-4">Your Songs</h1>
-      <div class="form-group">
-      <p class="lead">Song Name</p>
-        <input type="text" class="form-control" name="name"  />     
-        <p class="lead">Artist Name</p>
-        <input type="text" class="form-control" name="major" />     
-      </div>  
-      <input type="submit" value="Create" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Drop" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Insert" class="btn btn-dark" name="db-btn"/>
-
-      <br/>
-      <?php echo $msg;  ?>
-    </form> 
-  </div>
-
-  <!-- Your Playlists -->
-  <div class="container" id ="playlists">
-    <form action="index.php" method="post">
-    <h1 class="display-4">Your Playlists</h1>
-      <div class="form-group">
-      <p class="lead">Playlist Name</p>
-        <input type="text" class="form-control" name="name"  />     
-        <p class="lead">Creator Name</p>
-        <input type="text" class="form-control" name="major" />    
-      </div>  
-      <input type="submit" value="Create" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Drop" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Insert" class="btn btn-dark" name="db-btn"/>
-
-      <br/>
-      <?php echo $msg;  ?>
-    </form> 
-  </div>
   </div>
 
 </div>

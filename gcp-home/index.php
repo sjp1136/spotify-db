@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +18,7 @@
 
 <!-- Navbar -->
 <nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand">Welcome to Spotify4u</a>
+  <a class="navbar-brand">Spotify4u - Main Menu</a>
   <form class="form-inline">
   
     <a class="btn btn-outline-success my-2 my-sm-0" href="logout.php">LOGOUT</a>
@@ -24,17 +27,17 @@
 
 <!-- Potential scrollbar -->
 <div id="list-example" class="list-group movedown">
-  <a class="list-group-item list-group-item-action" href="#stats">Stats</a>
-  <a class="list-group-item list-group-item-action" href="#friends">Friends</a>
-  <a class="list-group-item list-group-item-action" href="#songs">Songs</a>
-  <a class="list-group-item list-group-item-action" href="#playlists">Playlists</a>
+  <a class="list-group-item list-group-item-action" href="stats.php">Stats</a>
+  <a class="list-group-item list-group-item-action" href="friends.php">Friends</a>
+  <a class="list-group-item list-group-item-action" href="songs.php">Songs</a>
+  <a class="list-group-item list-group-item-action" href="playlists.php">Playlists</a>
 </div>
 
 
 <div class="container">
 <?php
-session_start();
 
+echo $_SESSION['loggedin'];
 // Login stuff
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
   echo '<pre>'; 
@@ -71,84 +74,7 @@ $results = getPlaylists($userID, NULL);
 ?>
 </div>  
 
-<!-- Your Stats -->
 <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
-
-<div class="jumbotron jumbotron-fluid">
-  <div class="container" id ="stats">
-    <form action="index.php" method="post">
-      <h1 class="display-4">Your Stats</h1>
-      <div class="form-group">
-      <p class="lead">Song Name</p>
-        <input type="text" class="form-control" name="name"  />     
-        Artist Name
-        <input type="text" class="form-control" name="major" />     
-              <!-- add required if wanted -->
-      </div>  
-      <input type="submit" value="Create" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Drop" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Insert" class="btn btn-dark" name="db-btn"/>
-
-      <br/>
-      <?php echo $msg;  ?>
-    </form> 
-  </div>
-
-  <!-- Your Friends -->
-  <div class="container" id ="friends">
-    <form action="index.php" method="post">
-      <h1>Your Friends</h1>
-      <div class="form-group">
-        Friend Name
-        <input type="text" class="form-control" name="name"  />     
-      </div>  
-      <input type="submit" value="Create" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Drop" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Insert" class="btn btn-dark" name="db-btn"/>
-
-      <br/>
-      <?php echo $msg;  ?>
-    </form> 
-  </div>
-
-  <!-- Your Songs -->
-  <div class="container" id ="songs">
-    <form action="index.php" method="post">
-      <h1>Your Songs</h1>
-      <div class="form-group">
-        Song Name
-        <input type="text" class="form-control" name="name"  />     
-        Artist Name
-        <input type="text" class="form-control" name="major" />     
-      </div>  
-      <input type="submit" value="Create" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Drop" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Insert" class="btn btn-dark" name="db-btn"/>
-
-      <br/>
-      <?php echo $msg;  ?>
-    </form> 
-  </div>
-
-  <!-- Your Playlists -->
-  <div class="container" id ="playlists">
-    <form action="index.php" method="post">
-      <h1>Your Playlists</h1>
-      <div class="form-group">
-        Playlist Name
-        <input type="text" class="form-control" name="name"  />     
-        Creator Name
-        <input type="text" class="form-control" name="major" />    
-      </div>  
-      <input type="submit" value="Create" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Drop" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Insert" class="btn btn-dark" name="db-btn"/>
-
-      <br/>
-      <?php echo $msg;  ?>
-    </form> 
-  </div>
-  </div>
 
 </div>
 

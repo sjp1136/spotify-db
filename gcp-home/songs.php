@@ -16,7 +16,7 @@
 
 <!-- Navbar -->
 <nav class="navbar fixed-top navbar-dark bg-dark">
-  <a class="navbar-brand">Welcome to Spotify4u</a>
+  <a class="navbar-brand">Spotify4u - Songs</a>
   <form class="form-inline">
     <a class="btn btn-outline-success my-2 my-sm-0" href="logout.php">LOGOUT</a>
   </form>
@@ -59,53 +59,16 @@ $results = getPlaylists($userID, NULL);
 
 
 <!-- Potential scrollbar -->
-<div id="list-example" class="list-group movedown">
+<!-- <div id="list-example" class="list-group movedown">
   <a class="list-group-item list-group-item-action" href="#stats">Your Stats</a>
   <a class="list-group-item list-group-item-action" href="#friends">Your Friends</a>
   <a class="list-group-item list-group-item-action" href="#songs">Your Songs</a>
   <a class="list-group-item list-group-item-action" href="#playlists">Your Playlists</a>
-</div>
+</div> -->
 
 <div class="jumbotron jumbotron-fluid movedown">
 <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
   
-  <!-- Your Stats -->
-  <div class="container" id ="stats">
-    <form action="index.php" method="post">
-      <h1 class="display-4">Your Stats</h1>
-      <div class="form-group">
-      <p class="lead">Song Name</p>
-        <input type="text" class="form-control" name="name"  />     
-        Artist Name
-        <input type="text" class="form-control" name="major" />     
-              <!-- add required if wanted -->
-      </div>  
-      <input type="submit" value="Create" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Drop" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Insert" class="btn btn-dark" name="db-btn"/>
-
-      <br/>
-      <?php echo $msg;  ?>
-    </form> 
-  </div>
-
-  <!-- Your Friends -->
-  <div class="container" id ="friends">
-    <form action="index.php" method="post">
-    <h1 class="display-4">Your Friends</h1>
-      <div class="form-group">
-      <p class="lead">Song Name</p>
-        <input type="text" class="form-control" name="name"  />     
-      </div>  
-      <input type="submit" value="Create" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Drop" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Insert" class="btn btn-dark" name="db-btn"/>
-
-      <br/>
-      <?php echo $msg;  ?>
-    </form> 
-  </div>
-
   <!-- Your Songs -->
   <div class="container" id ="songs">
     <form action="index.php" method="post">
@@ -125,24 +88,6 @@ $results = getPlaylists($userID, NULL);
     </form> 
   </div>
 
-  <!-- Your Playlists -->
-  <div class="container" id ="playlists">
-    <form action="index.php" method="post">
-    <h1 class="display-4">Your Playlists</h1>
-      <div class="form-group">
-      <p class="lead">Playlist Name</p>
-        <input type="text" class="form-control" name="name"  />     
-        <p class="lead">Creator Name</p>
-        <input type="text" class="form-control" name="major" />    
-      </div>  
-      <input type="submit" value="Create" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Drop" class="btn btn-dark" name="db-btn"/>
-      <input type="submit" value="Insert" class="btn btn-dark" name="db-btn"/>
-
-      <br/>
-      <?php echo $msg;  ?>
-    </form> 
-  </div>
   </div>
 
 </div>
